@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "django_tokens"
 version = "0.1.0"
-description = ""
+description = "A django app to implement token based authentication in django projects."
 authors = [
     "IgnisDa <ignisda2002@gmail.com>",
 ]
