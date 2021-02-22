@@ -2,12 +2,15 @@
 The root query definition
 """
 type Query {
-  testQuery: String!
+  testQuery: TestQueryPayload!
 }
 
 """
 The root mutation definition
 """
 type Mutation {
-  testMutation: String!
+  getAuthToken(username: String!, password: String!): AuthTokenPayload!
+  deleteAuthToken(token: String!): DeleteTokenPayload!
+
+  testMutation: TestQueryPayload!
 }
