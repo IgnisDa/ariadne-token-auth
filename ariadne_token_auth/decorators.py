@@ -3,19 +3,6 @@ from functools import wraps
 from . import exceptions
 
 
-def user_passes_test(test_func):
-    def decorator(f):
-        @wraps(f)
-        def wrapper(request, *args, **kwargs):
-            if test_func(request.user):
-                return f(request, *args, **kwargs)
-            raise exceptions.PermissionDenied()
-
-        return wrapper
-
-    return decorator
-
-
 def context(f):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -27,7 +14,7 @@ def context(f):
     return decorator
 
 
-def user_passes_test_ariadne(test_func):
+def user_passes_test(test_func):
     def decorator(f):
         @wraps(f)
         @context(f)
@@ -42,4 +29,3 @@ def user_passes_test_ariadne(test_func):
 
 
 login_required = user_passes_test(lambda u: u.is_authenticated)
-login_required_ariadne = user_passes_test_ariadne(lambda u: u.is_authenticated)
