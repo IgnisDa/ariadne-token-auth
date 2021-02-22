@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "ariadne-token-auth"
-version = "0.1.0"
-description = "A django app to implement token based authentication in django projects, with support for authentication with ariadne."
+version = "0.0.1"
+description = "A django app to implement token based authentication in Ariadne GraphQL"
 authors = [
     "IgnisDa <ignisda2002@gmail.com>",
 ]
