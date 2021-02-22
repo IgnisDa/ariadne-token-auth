@@ -24,7 +24,7 @@ test = ["coverage", "flake8", "pexpect", "wheel"]
 name = "ariadne"
 version = "0.12.0"
 description = "Ariadne is a Python library for implementing GraphQL servers."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -225,7 +225,7 @@ pyflakes = ">=2.2.0,<2.3.0"
 name = "graphql-core"
 version = "3.0.5"
 description = "GraphQL implementation for Python, a port of GraphQL.js, the JavaScript reference implementation for GraphQL."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6,<4"
 
@@ -584,7 +584,7 @@ python-versions = ">=3.5"
 name = "starlette"
 version = "0.13.8"
 description = "The little ASGI library that shines."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -635,7 +635,7 @@ python-versions = "*"
 name = "typing-extensions"
 version = "3.7.4.3"
 description = "Backported and Experimental Type Hints for Python 3.5+"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -675,7 +675,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "05b6f0727568e00cf69f23421739a4ffaeae92aa67f212c76a516af7dd764687"
+content-hash = "aa3b36a729c528d5d446f3b8a01c9c056b54167a2468153ea541f7fd0b47520b"
 
 [metadata.files]
 appdirs = [
