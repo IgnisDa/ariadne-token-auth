@@ -1,5 +1,5 @@
+from ariadne_token_auth.decorators import login_required
 from django.http import JsonResponse
-from django_tokens.decorators import login_required
 
 
 @login_required

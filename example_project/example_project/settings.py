@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # added later
-    "django_tokens",
+    "ariadne_token_auth",
     "example_app.apps.ExampleAppConfig",
 ]
 
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # added later
-    "django_tokens.middlewares.AuthTokenMiddleware",
+    "ariadne_token_auth.middlewares.AuthTokenMiddleware",
 ]
 
 ROOT_URLCONF = "example_project.urls"
@@ -127,5 +127,5 @@ STATIC_URL = "/static/"
 # added later
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
-    "django_tokens.backends.AuthTokenBackend",
+    "ariadne_token_auth.backends.AuthTokenBackend",
 )
