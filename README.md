@@ -19,6 +19,7 @@ django projects without having to install django-rest-framework.
   - [Versioning](#versioning)
   - [Authors](#authors)
   - [License](#license)
+  - [Acknowledgements](#acknowledgements)
   - [Others](#others)
 
 ## Getting Started
@@ -96,6 +97,13 @@ See also the list of [contributors](contributors.md) who participated in this pr
 This project is licensed under the
 [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0) - see the
 [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgements
+
+1. **django-token**: Model definitions, middleware and authentication backends adapted from
+   [django-tokens](https://github.com/jasonbeverage/django-token) package.
+2. **ariadne-jwt**: Exceptions, and decorators adapted from
+   [ariadne-jwt](https://github.com/Usama0121/ariadne-jwt) package.
 
 ## Others
 
