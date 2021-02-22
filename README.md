@@ -1,20 +1,19 @@
-# django-tokens
+# ariadne-token-auth
 
-A small django app to help you implement token based authentication in your
-django projects without having to install django-rest-framework.
+A django app to implement token based authentication in projects which use
+[ariadne](https://ariadnegraphql.org/).
 
 ## Summary
 
-- [django-tokens](#django-tokens)
+- [ariadne-token-auth](#ariadne-token-auth)
   - [Summary](#summary)
-  - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
     - [Installing](#installing)
+  - [Using the package](#using-the-package)
+    - [Settings](#settings)
+    - [Schema](#schema)
   - [Running the tests](#running-the-tests)
     - [Break down into end to end tests](#break-down-into-end-to-end-tests)
     - [And coding style tests](#and-coding-style-tests)
-  - [Deployment](#deployment)
-  - [Built With](#built-with)
   - [Contributing](#contributing)
   - [Versioning](#versioning)
   - [Authors](#authors)
@@ -22,37 +21,68 @@ django projects without having to install django-rest-framework.
   - [Acknowledgements](#acknowledgements)
   - [Others](#others)
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-    Give examples
-
 ### Installing
 
-A step by step series of examples that tell you how to get a development
-env running
+The package is live on [PyPI](https://pypi.org/project/ariadne-token-auth/) and can be
+installed using `pip`
 
-Say what the step will be
+```bash
+pip install ariadne-token-auth
+```
 
-    Give the example
+Or using [poetry](https://python-poetry.org/)
 
-And repeat
+```bash
+poetry add ariadne-token-auth
+```
 
-    until finished
+## Using the package
 
-End with an example of getting some data out of the system or using it
-for a little demo
+**NOTE**: You can have a look at the [example project](./example_project) for a fully
+working project. [Habitrac](https://github.com/IgnisDa/habitrac) is also a production
+website which uses this package to implement authentication.
+
+### Settings
+
+Include the `AuthTokenMiddleware` in your `MIDDLEWARE` settings.
+
+```python
+MIDDLEWARE = [
+    # Other middleware
+    "ariadne_token_auth.middleware.AuthTokenMiddleware",
+]
+```
+
+Include the `AuthTokenBackend` in your `BACKENDS` settings.
+
+```python
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "ariadne_token_auth.backends.AuthTokenBackend",
+)
+```
+
+Finally add `ariadne_token_auth` to your `INSTALLED_APPS`.
+
+```python
+INSTALLED_APPS = [
+    # other apps
+    'ariadne_token_auth
+]
+```
+
+### Schema
+
+Hello
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+The tests for this package have been written using
+[pytest](https://docs.pytest.org/en/stable/). You can run them using the following command
+
+```bash
+pytest
+```
 
 ### Break down into end to end tests
 
@@ -65,17 +95,6 @@ Explain what these tests test and why
 Explain what these tests test and why
 
     Give an example
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-- [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-  for the Code of Conduct
-- [Creative Commons](https://creativecommons.org/) - Used to choose
-  the license
 
 ## Contributing
 
