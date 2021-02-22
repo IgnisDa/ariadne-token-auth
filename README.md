@@ -1,11 +1,7 @@
 # django-tokens
 
-One Paragraph of project description goes here
-
-This initially appeared on
-[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2), but as
-I can no longer open that page as there are too many comments, I have
-moved it here.
+A small django app to help you implement token based authentication in your
+django projects without having to install django-rest-framework.
 
 ## Summary
 
@@ -23,7 +19,7 @@ moved it here.
   - [Versioning](#versioning)
   - [Authors](#authors)
   - [License](#license)
-  - [Acknowledgments](#acknowledgments)
+  - [Others](#others)
 
 ## Getting Started
 
