@@ -21,6 +21,22 @@ importlib-metadata = {version = ">=0.23,<4", markers = "python_version == \"3.6\
 test = ["coverage", "flake8", "pexpect", "wheel"]
 
 [[package]]
+name = "ariadne"
+version = "0.12.0"
+description = "Ariadne is a Python library for implementing GraphQL servers."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+graphql-core = ">=3.0.0,<3.1.0"
+starlette = "<0.14"
+typing-extensions = ">=3.6.0"
+
+[package.extras]
+asgi-file-uploads = ["python-multipart (>=0.0.5)"]
+
+[[package]]
 name = "asgiref"
 version = "3.3.1"
 description = "ASGI specs, helper code, and adapters"
@@ -204,6 +220,14 @@ importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 mccabe = ">=0.6.0,<0.7.0"
 pycodestyle = ">=2.6.0a1,<2.7.0"
 pyflakes = ">=2.2.0,<2.3.0"
+
+[[package]]
+name = "graphql-core"
+version = "3.0.5"
+description = "GraphQL implementation for Python, a port of GraphQL.js, the JavaScript reference implementation for GraphQL."
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4"
 
 [[package]]
 name = "httpie"
@@ -557,6 +581,17 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
+name = "starlette"
+version = "0.13.8"
+description = "The little ASGI library that shines."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+full = ["aiofiles", "graphene", "itsdangerous", "jinja2", "python-multipart", "pyyaml", "requests", "ujson"]
+
+[[package]]
 name = "termcolor"
 version = "1.1.0"
 description = "ANSII Color formatting for output in terminal."
@@ -640,7 +675,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "07cbfe8bcaf54b17416fa227141ea447a60fe6acc0014edb78d4ab04cf4dfda0"
+content-hash = "05b6f0727568e00cf69f23421739a4ffaeae92aa67f212c76a516af7dd764687"
 
 [metadata.files]
 appdirs = [
@@ -650,6 +685,10 @@ appdirs = [
 argcomplete = [
     {file = "argcomplete-1.12.2-py2.py3-none-any.whl", hash = "sha256:17f01a9b9b9ece3e6b07058eae737ad6e10de8b4e149105f84614783913aba71"},
     {file = "argcomplete-1.12.2.tar.gz", hash = "sha256:de0e1282330940d52ea92a80fea2e4b9e0da1932aaa570f84d268939d1897b04"},
+]
+ariadne = [
+    {file = "ariadne-0.12.0-py3-none-any.whl", hash = "sha256:e88b574d13c155f934d5e57431e5f9ab3a266a7064a6e397e7c662241276e2e3"},
+    {file = "ariadne-0.12.0.tar.gz", hash = "sha256:00a21584eb5ca8751380f9870d560db0a486ff69747884674caaee811a2ae64b"},
 ]
 asgiref = [
     {file = "asgiref-3.3.1-py3-none-any.whl", hash = "sha256:5ee950735509d04eb673bd7f7120f8fa1c9e2df495394992c73234d526907e17"},
@@ -760,6 +799,10 @@ faker = [
 flake8 = [
     {file = "flake8-3.8.4-py2.py3-none-any.whl", hash = "sha256:749dbbd6bfd0cf1318af27bf97a14e28e5ff548ef8e5b1566ccfb25a11e7c839"},
     {file = "flake8-3.8.4.tar.gz", hash = "sha256:aadae8761ec651813c24be05c6f7b4680857ef6afaae4651a4eccaef97ce6c3b"},
+]
+graphql-core = [
+    {file = "graphql-core-3.0.5.tar.gz", hash = "sha256:51f7dab06b5035515b23984f6fcb677ed909b56c672152699cca32e03624992e"},
+    {file = "graphql_core-3.0.5-py3-none-any.whl", hash = "sha256:dfc374d3426677727772d8da9dd010e92d10305ddd9c2f7f0fc388f07cee94c4"},
 ]
 httpie = [
     {file = "httpie-2.4.0-py3-none-any.whl", hash = "sha256:9b69f611734d8c0f7fffe96d2f9f9e3a2cfed6974a94053a43ca87e21b5ef5c8"},
@@ -998,6 +1041,10 @@ six = [
 sqlparse = [
     {file = "sqlparse-0.4.1-py3-none-any.whl", hash = "sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0"},
     {file = "sqlparse-0.4.1.tar.gz", hash = "sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8"},
+]
+starlette = [
+    {file = "starlette-0.13.8-py3-none-any.whl", hash = "sha256:40afea6ffa830849800cc4efdf006a86ad579d6ba6b64cb1925a1897b020ba6e"},
+    {file = "starlette-0.13.8.tar.gz", hash = "sha256:82df29b2149437ad828a883674bf031788600c876dae50835e98398bd1706183"},
 ]
 termcolor = [
     {file = "termcolor-1.1.0.tar.gz", hash = "sha256:1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b"},
