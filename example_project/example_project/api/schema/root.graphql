@@ -1,0 +1,13 @@
+"""
+The root query definition
+"""
+type Query {
+  testQuery: String!
+}
+
+"""
+The root mutation definition
+"""
+type Mutation {
+  testMutation: String!
+}
