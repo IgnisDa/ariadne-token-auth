@@ -13,3 +13,7 @@ class AuthTokenTokenError(Exception):
 
 class PermissionDenied(AuthTokenTokenError):
     default_message = _("You do not have permission to perform this action")
+
+
+class InvalidCredentialsError(AuthTokenTokenError):
+    default_message = _("The credentials that you provided were invalid")
