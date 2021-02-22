@@ -5,4 +5,4 @@ from . import models
 
 @admin.register(models.AuthToken)
 class AuthTokenAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ("token_string",)
