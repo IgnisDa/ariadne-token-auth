@@ -12,8 +12,14 @@ type_defs = [
     load_schema_from_path(f)
     for f in glob.glob(str(settings.BASE_DIR / "*" / "api" / "schema" / "*.graphql"))
 ]
+type_defs.extend(example_app_resolvers.auth_type_definitions)
+
 schema = make_executable_schema(
     type_defs,
-    [example_app_resolvers.query, example_app_resolvers.mutation],
+    [
+        example_app_resolvers.query,
+        example_app_resolvers.mutation,
+        example_app_resolvers.auth_mutation,
+    ],
     snake_case_fallback_resolvers,
 )
