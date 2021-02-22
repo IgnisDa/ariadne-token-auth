@@ -7,7 +7,7 @@ from django.utils.translation import gettext as _
 
 
 class AuthToken(models.Model):
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         related_name="auth_token",
         on_delete=models.CASCADE,
@@ -17,7 +17,9 @@ class AuthToken(models.Model):
         auto_now_add=True, help_text=_("The date and time this token was created at.")
     )
     token_string = models.CharField(
-        max_length=35, help_text=_("The token that will be used for login.")
+        max_length=35,
+        help_text=_("The token that will be used for login."),
+        editable=False,
     )
 
     def save(self, *args, **kwargs):
@@ -29,4 +31,4 @@ class AuthToken(models.Model):
         return binascii.hexlify(os.urandom(35)).decode()
 
     def __str__(self):
-        return f"Token for {self.user}"
+        return f"Token #{self.pk} for {self.user}"
