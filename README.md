@@ -9,6 +9,7 @@ A django app to implement token based authentication in projects which use
   - [Summary](#summary)
     - [Installing](#installing)
   - [Using the package](#using-the-package)
+    - [Example Project](#example-project)
     - [Setup](#setup)
     - [Migrations](#migrations)
     - [Schema](#schema)
@@ -38,7 +39,9 @@ poetry add ariadne-token-auth
 
 ## Using the package
 
-**NOTE**: You can have a look at the [example project](./example_project) for a fully
+### Example Project
+
+You can have a look at the [example project](./example_project) for a fully
 working project. [Habitrac](https://github.com/IgnisDa/habitrac) is also a production
 website which uses this package to implement authentication.
 
@@ -53,7 +56,7 @@ MIDDLEWARE = [
 ]
 ```
 
-Include the `AuthTokenBackend` in your `BACKENDS` settings.
+Include the `AuthTokenBackend` in your `AUTHENTICATION_BACKENDS` settings.
 
 ```python
 AUTHENTICATION_BACKENDS = (
@@ -89,7 +92,7 @@ auth_mutation.set_field("getAuthToken", resolvers.get_auth_token)
 auth_mutation.set_field("deleteAuthToken", resolvers.delete_auth_token)
 type_defs = """
   type Mutation {
-    getAuthToken(username: String!, password: String!): AuthTokenPayload!
+    getAuthToken(identifier: String!, password: String!): AuthTokenPayload!
     deleteAuthToken(token: String!): DeleteTokenPayload!
 }
 """
@@ -99,8 +102,10 @@ schema = make_executable_schema([type_defs, resolvers.type_defs], auth_mutation)
 
 - `getAuthToken` to authenticate an existing user and obtain a corresponding token. The
   resolver uses the user model's `USERNAME_FIELD` which by default is `username`. However
-  it will work with other `USERNAME_FIELD`s just fine (for example when the default user
-  identifier is `email` instead of `username`).
+  it will work with other `USERNAME_FIELD`s just fine, for example when the default user
+  identifier is `email` instead of `username`. The [example project](#example-project) does
+  this by defining a
+  [custom user model](https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#specifying-a-custom-user-model).
 
   ```graphql
   mutation getAuthToken($username: String!, $password: String!) {
@@ -113,6 +118,10 @@ schema = make_executable_schema([type_defs, resolvers.type_defs], auth_mutation)
   }
   ```
 
+  If authentication is successful, you can obtain the auth-token from
+  `response.data.getAuthToken.auth.token`, and if it is unsuccessful, errors will
+  be present in `response.data.getAuthToken.error`.
+
 - `deleteAuthToken` to delete a logged in user using the above token.
 
   ```graphql
@@ -124,6 +133,12 @@ schema = make_executable_schema([type_defs, resolvers.type_defs], auth_mutation)
   }
   ```
 
+  If the token was correct and deletion was successful, the value of
+  `response.data.deleteAuthToken.status` will be set to `true` (or it's equivalent in your
+  frontend language). Otherwise, the error will be present in
+  `response.data.deleteAuthToken.error` and `response.data.deleteAuthToken.status` will be
+  set to `false`.
+
 ### Configuration
 
 Settings specific to ariadne-token-auth are stored in the `ARIADNE_TOKEN_AUTH` dictionary
@@ -133,7 +148,7 @@ file. They can be configured as follows:
 ```python
 # settings.py
 ARIADNE_TOKEN_AUTH = {
-    'TOKEN_NAME': 'myBearer',
+    'TOKEN_NAME': 'myBearer', # case insensitive
     'TOKEN_LENGTH': 15
 }
 ```
