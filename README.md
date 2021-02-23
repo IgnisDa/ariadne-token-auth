@@ -70,7 +70,7 @@ Finally add `ariadne_token_auth` to your `INSTALLED_APPS`.
 ```python
 INSTALLED_APPS = [
     # other apps
-    'ariadne_token_auth'
+    'ariadne_token_auth',
 ]
 ```
 
