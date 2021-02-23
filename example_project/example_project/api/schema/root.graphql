@@ -9,7 +9,7 @@ type Query {
 The root mutation definition
 """
 type Mutation {
-  getAuthToken(username: String!, password: String!): AuthTokenPayload!
+  getAuthToken(identifier: String!, password: String!): AuthTokenPayload!
   deleteAuthToken(token: String!): DeleteTokenPayload!
 
   testMutation: TestQueryPayload!
