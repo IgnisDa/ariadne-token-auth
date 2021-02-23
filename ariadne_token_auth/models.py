@@ -5,6 +5,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext as _
 
+from . import utils
+
 
 class AuthToken(models.Model):
     user = models.OneToOneField(
@@ -16,8 +18,7 @@ class AuthToken(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True, help_text=_("The date and time this token was created at.")
     )
-    token_string = models.CharField(
-        max_length=35,
+    token_string = models.TextField(
         help_text=_("The token that will be used for login."),
         editable=False,
     )
@@ -28,7 +29,7 @@ class AuthToken(models.Model):
         return super(AuthToken, self).save(*args, **kwargs)
 
     def generate_token_string(self):
-        return binascii.hexlify(os.urandom(35)).decode()
+        return binascii.hexlify(os.urandom(utils.TOKEN_LENGTH)).decode()
 
     def __str__(self):
         return f"Token #{self.pk} for {self.user}"
