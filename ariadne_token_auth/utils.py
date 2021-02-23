@@ -2,10 +2,14 @@ from django.conf import settings
 
 
 def get_settings_or_default(setting_name):
-    specific_settings = getattr(
-        settings, "ARIADNE_TOKEN_AUTH", {"TOKEN_NAME": "Token", "TOKEN_LENGTH": 35}
+    ariadne_token_auth_settings = getattr(
+        settings,
+        "ARIADNE_TOKEN_AUTH",
+        # The default settings start here
+        {"TOKEN_NAME": "Token", "TOKEN_LENGTH": 35}
+        # The default settings end here
     )
-    return specific_settings.get(setting_name)
+    return ariadne_token_auth_settings.get(setting_name)
 
 
 TOKEN_NAME = get_settings_or_default("TOKEN_NAME")
