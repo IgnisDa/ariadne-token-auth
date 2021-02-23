@@ -13,6 +13,7 @@ A django app to implement token based authentication in projects which use
     - [Setup](#setup)
     - [Migrations](#migrations)
     - [Schema](#schema)
+    - [Protecting Views](#protecting-views)
     - [Configuration](#configuration)
     - [Bonus](#bonus)
   - [Contributing](#contributing)
@@ -138,6 +139,21 @@ schema = make_executable_schema([type_defs, resolvers.type_defs], auth_mutation)
   frontend language). Otherwise, the error will be present in
   `response.data.deleteAuthToken.error` and `response.data.deleteAuthToken.status` will be
   set to `false`.
+
+### Protecting Views
+
+You can use the `login_required` decorator to protect your graphql queries from
+non-authenticated users.
+
+```python
+from ariadne import QueryType
+from ariadne_token_auth.decorators import login_required
+
+@query.field("testQuery")
+@login_required
+def test_query(self, info, *args, **kwargs):
+    return {"user": info.context.get("request").user}
+```
 
 ### Configuration
 
