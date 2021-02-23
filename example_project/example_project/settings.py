@@ -115,3 +115,4 @@ AUTHENTICATION_BACKENDS = (
 
 # ariadne-token-auth specific settings
 ARIADNE_TOKEN_AUTH = {"TOKEN_NAME": "myBearer", "TOKEN_LENGTH": 15}
+AUTH_USER_MODEL = "example_app.CustomUser"
