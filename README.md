@@ -108,8 +108,8 @@ schema = make_executable_schema([type_defs, resolvers.type_defs], auth_mutation)
   [custom user model](https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#specifying-a-custom-user-model).
 
   ```graphql
-  mutation getAuthToken($username: String!, $password: String!) {
-    getAuthToken(username: $username, password: $password) {
+  mutation getAuthToken($identifier: String!, $password: String!) {
+    getAuthToken(identifier: $identifier, password: $password) {
       error
       auth {
         token
