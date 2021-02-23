@@ -14,7 +14,7 @@ A django app to implement token based authentication in projects which use
     - [Migrations](#migrations)
     - [Schema](#schema)
     - [Configuration](#configuration)
-  - [Running the tests](#running-the-tests)
+    - [Bonus](#bonus)
   - [Contributing](#contributing)
   - [Versioning](#versioning)
   - [Authors](#authors)
@@ -163,14 +163,10 @@ curl 'http://127.0.0.1:8000/graphql/' \
       --data-binary '{"query":"query {\n  testQuery {\n    user\n  }\n}"}'
 ```
 
-## Running the tests
+### Bonus
 
-The tests for this package have been written using
-[pytest](https://docs.pytest.org/en/stable/). You can run them using the following command
-
-```bash
-pytest
-```
+You can find a very easy way to add your `*.graphql` files to the django auto-reloader
+[here](https://github.com/IgnisDa/ariadne-token-auth/blob/main/example_project/example_app/apps.py#L6).
 
 ## Contributing
 
