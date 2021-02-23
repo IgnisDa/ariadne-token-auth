@@ -19,7 +19,7 @@ UserModel = get_user_model()
 
 
 def get_auth_token(self, info, password, *args, **kwargs):
-    username_field = kwargs.get(UserModel.USERNAME_FIELD)
+    username_field = kwargs.get("identifier")
     user = authenticate(
         info.context.get("request"), username=username_field, password=password
     )
