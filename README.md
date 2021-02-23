@@ -24,17 +24,17 @@ A django app to implement token based authentication in projects which use
 
 ### Installing
 
-The package is live on [PyPI](https://pypi.org/project/ariadne-token-auth/) and can be
-installed using `pip`
+The package can be downloaded from its
+[github](https://github.com/IgnisDa/ariadne-token-auth) repository.
 
 ```bash
-pip install ariadne-token-auth
+pip install git+https://github.com/IgnisDa/ariadne-token-auth.gith
 ```
 
 Or using [poetry](https://python-poetry.org/)
 
 ```bash
-poetry add ariadne-token-auth
+poetry add git+https://github.com/IgnisDa/ariadne-token-auth.git#main
 ```
 
 ## Using the package
