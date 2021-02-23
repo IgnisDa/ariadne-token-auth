@@ -28,7 +28,7 @@ The package can be downloaded from its
 [github](https://github.com/IgnisDa/ariadne-token-auth) repository.
 
 ```bash
-pip install git+https://github.com/IgnisDa/ariadne-token-auth.gith
+pip install git+https://github.com/IgnisDa/ariadne-token-auth.git
 ```
 
 Or using [poetry](https://python-poetry.org/)
