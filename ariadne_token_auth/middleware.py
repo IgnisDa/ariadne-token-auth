@@ -2,6 +2,8 @@ from django import http
 from django.contrib import auth
 from django.core import exceptions
 
+from . import utils
+
 
 class AuthTokenMiddleware:
     """
@@ -23,7 +25,7 @@ class AuthTokenMiddleware:
         auth_header = request.headers.get("AUTHORIZATION", "").split()
         if not auth_header:
             return None
-        if auth_header[0].lower() != "token":
+        if auth_header[0].lower() != utils.TOKEN_NAME.lower():
             return None
 
         # If they specified an invalid token, let them know.
