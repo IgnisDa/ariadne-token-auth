@@ -9,11 +9,11 @@ A django app to implement token based authentication in projects which use
   - [Summary](#summary)
     - [Installing](#installing)
   - [Using the package](#using-the-package)
-    - [Settings](#settings)
+    - [Setup](#setup)
+    - [Migrations](#migrations)
     - [Schema](#schema)
+    - [Configuration](#configuration)
   - [Running the tests](#running-the-tests)
-    - [Break down into end to end tests](#break-down-into-end-to-end-tests)
-    - [And coding style tests](#and-coding-style-tests)
   - [Contributing](#contributing)
   - [Versioning](#versioning)
   - [Authors](#authors)
@@ -42,7 +42,7 @@ poetry add ariadne-token-auth
 working project. [Habitrac](https://github.com/IgnisDa/habitrac) is also a production
 website which uses this package to implement authentication.
 
-### Settings
+### Setup
 
 Include the `AuthTokenMiddleware` in your `MIDDLEWARE` settings.
 
@@ -71,9 +71,37 @@ INSTALLED_APPS = [
 ]
 ```
 
+### Migrations
+
+Next, run `python manage.py migrate` to commit the auth-token model to your database.
+
 ### Schema
 
 Hello
+
+### Configuration
+
+Settings specific to ariadne-token-auth are stored in the `ARIADNE_TOKEN_AUTH` dictionary
+in `settings.py` file. The defaults can be seen in [utils.py](./ariadne_token_auth/utils.py)
+file. They can be configured as follows:
+
+```python
+# settings.py
+ARIADNE_TOKEN_AUTH = {
+    'TOKEN_NAME': 'myBearer',
+    'TOKEN_LENGTH': 15
+}
+```
+
+With the above settings, you will have to send requests in the following fashion (example
+uses `curl`, but the basic premise stays the same).
+
+```bash
+curl 'http://127.0.0.1:8000/graphql/' \
+      -H 'Content-Type: application/json' \
+      -H 'Authorization: myBearer 8496fda8dedad2235921693717c8dc' \
+      --data-binary '{"query":"query {\n  testQuery {\n    user\n  }\n}"}'
+```
 
 ## Running the tests
 
@@ -83,18 +111,6 @@ The tests for this package have been written using
 ```bash
 pytest
 ```
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-    Give an example
-
-### And coding style tests
-
-Explain what these tests test and why
-
-    Give an example
 
 ## Contributing
 
