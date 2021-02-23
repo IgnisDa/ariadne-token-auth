@@ -67,7 +67,7 @@ Finally add `ariadne_token_auth` to your `INSTALLED_APPS`.
 ```python
 INSTALLED_APPS = [
     # other apps
-    'ariadne_token_auth
+    'ariadne_token_auth'
 ]
 ```
 
@@ -77,7 +77,52 @@ Next, run `python manage.py migrate` to commit the auth-token model to your data
 
 ### Schema
 
-Hello
+Add the relevant mutations to your GraphQL schema.
+
+```python
+from ariadne import MutationType, make_executable_schema
+from ariadne_token_auth.api import resolvers
+
+auth_mutation = MutationType()
+
+auth_mutation.set_field("getAuthToken", resolvers.get_auth_token)
+auth_mutation.set_field("deleteAuthToken", resolvers.delete_auth_token)
+type_defs = """
+  type Mutation {
+    getAuthToken(username: String!, password: String!): AuthTokenPayload!
+    deleteAuthToken(token: String!): DeleteTokenPayload!
+}
+"""
+
+schema = make_executable_schema([type_defs, resolvers.type_defs], auth_mutation)
+```
+
+- `getAuthToken` to authenticate an existing user and obtain a corresponding token. The
+  resolver uses the user model's `USERNAME_FIELD` which by default is `username`. However
+  it will work with other `USERNAME_FIELD`s just fine (for example when the default user
+  identifier is `email` instead of `username`).
+
+  ```graphql
+  mutation getAuthToken($username: String!, $password: String!) {
+    getAuthToken(username: $username, password: $password) {
+      error
+      auth {
+        token
+      }
+    }
+  }
+  ```
+
+- `deleteAuthToken` to delete a logged in user using the above token.
+
+  ```graphql
+  mutation deleteAuthToken($token: String!) {
+    deleteAuthToken(token: $token) {
+      status
+      error
+    }
+  }
+  ```
 
 ### Configuration
 
