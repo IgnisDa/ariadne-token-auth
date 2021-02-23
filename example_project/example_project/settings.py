@@ -11,9 +11,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -114,3 +112,6 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "ariadne_token_auth.backends.AuthTokenBackend",
 )
+
+# ariadne-token-auth specific settings
+ARIADNE_TOKEN_AUTH = {"TOKEN_NAME": "myBearer", "TOKEN_LENGTH": 15}
