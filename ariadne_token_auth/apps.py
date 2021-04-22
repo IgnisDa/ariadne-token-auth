@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class DjangoTokensConfig(AppConfig):
-    name = "django_tokens"
+class AriadneTokenAuthConfig(AppConfig):
+    name = "ariadne_token_auth"
